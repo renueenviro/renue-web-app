@@ -1,14 +1,14 @@
 <script>
-	//STORES
+  //STORES
 
-	//LIBS
+  //LIBS
 
-	//COMPONENTS
-	import Carousel from '../../widgets/carousel.svelte';
+  //COMPONENTS
+  import Carousel from "../../widgets/carousel.svelte";
 
-	//SECTIONS
+  //SECTIONS
 </script>
 
-<div class="w-full h-auto items-stretch">
-	<Carousel />
+<div class="w-full h-640 my-72">
+  <Carousel />
 </div>

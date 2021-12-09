@@ -1,4 +1,9 @@
-import { writable } from 'svelte/store';
+import { readable } from "svelte/store";
+
+export const cms_url = readable("https://renue-web-app.prismic.io/api/v2");
+
+/*
+import { writable } from "svelte/store";
 
 export const document = writable([]);
 
@@ -47,3 +52,4 @@ const fetchData = async () => {
 };
 
 fetchData();
+*/

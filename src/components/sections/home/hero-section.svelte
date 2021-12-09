@@ -1,22 +1,33 @@
 <script>
-	//STORES
-	import { document } from '../../../stores/renuestore';
+  //STORES
 
-	//LIBS
-	import { onMount } from 'svelte';
+  //LIBS
+  import { onMount } from "svelte";
 
-	//COMPONENTS
-	import HeroPrimary from '../../hero/hero-primary.svelte';
+  //COMPONENTS
+  import HeroPrimary from "../../hero/hero-primary.svelte";
 
-	let heading, subheading, paragraph;
+  export let contents;
+  let heroContents;
 
-	onMount(async () => {
-		let data = await $document;
-		heading = data[0].sections[0].primary.heading[0].text;
-		subheading = data[0].sections[0].primary.subheading[0].text;
-		paragraph = data[0].sections[0].primary.paragraph[0].text;
-		console.log('data', data[0].sections[0].primary.paragraph[0].text);
-	});
+  onMount(async () => {
+    // let data = await $document;
+    // if (data[0] !== undefined) {
+    //heading = await contents.heading;
+    //   subheading = data[0].sections[0].primary.subheading[0].text;
+    //   paragraph = data[0].sections[0].primary.paragraph[0].text;
+    //   console.log("data", data[0].sections[0].primary.paragraph[0].text);
+    // }
+  });
 </script>
 
-<HeroPrimary {heading} {subheading} {paragraph} />
+<!-- {#await heroContents}
+  <h1>Loading</h1>
+{:then data} -->
+{console.log("data", contents)}
+<HeroPrimary
+  heading={contents.heading}
+  subheading={contents.subheading}
+  paragraph={contents.paragraph}
+/>
+<!-- {/await} -->
