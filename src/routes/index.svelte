@@ -4,6 +4,7 @@
   //LIBS
 
   //COMPONENTS
+  import SpacerLine from "../components/containers/spacer-line.svelte";
 
   //SECTIONS
   import HeroSection from "../components/sections/home/hero-section.svelte";
@@ -79,7 +80,7 @@
     <HeroSection contents={data.hero} />
   {/if}
 {/await}
-
 <Section1 />
+<SpacerLine />
 <Section2 />
 <Section3 />

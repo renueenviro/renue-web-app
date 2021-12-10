@@ -8,3 +8,7 @@ body {
 .gradient-blue-to-green-light {
   background: linear-gradient(90deg, rgb(0, 225, 255), rgb(123, 255, 61));
 }
+
+.gradient-bg-dark-secondary {
+  background: linear-gradient(180deg, #3fc4e5 40%, #032027);
+}

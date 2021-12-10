@@ -9,6 +9,6 @@
   //SECTIONS
 </script>
 
-<div class="w-full h-640 my-72">
+<div class="bg-background-light w-full h-6400 py-120">
   <Carousel />
 </div>
