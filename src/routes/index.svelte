@@ -76,7 +76,6 @@
   <h1 class="text-secondary text-8xl mt-72">Loading...</h1>
 {:then data}
   {#if data !== undefined}
-    <!-- {console.log("heroContent", data)} -->
     <HeroSection contents={data.hero} />
   {/if}
 {/await}

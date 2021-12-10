@@ -1,5 +1,6 @@
 //COLORS
 const primaryMain = "#A6CF4D";
+const primaryLight = "#D9F3A1";
 const secondaryMain = "#00BCEA";
 const tertiaryMain = "#C1C1C1";
 const onBackgroundVariant = "#FFFFFF";
@@ -14,6 +15,7 @@ module.exports = {
   theme: {
     textColor: {
       "primary-main": primaryMain,
+      "primary-light": primaryLight,
       "secondary-main": secondaryMain,
       "tertiary-main": tertiaryMain,
       "on-background-variant": onBackgroundVariant,
@@ -23,6 +25,7 @@ module.exports = {
     },
     backgroundColor: {
       "primary-main": primaryMain,
+      "primary-light": primaryLight,
       "secondary-main": secondaryMain,
       "tertiary-main": tertiaryMain,
       "on-background-variant": onBackgroundVariant,
@@ -42,6 +45,8 @@ module.exports = {
       72: "72px",
       80: "80px",
       96: "96px",
+      120: "120px",
+      132: "132px",
       148: "148px",
       168: "168px",
       200: "200px",
@@ -50,15 +55,53 @@ module.exports = {
       640: "640px",
       720: "720px",
       800: "800px",
+      960: "960px",
+      1120: "1120px",
+      1200: "1200px",
+      1600: "1600px",
       sm: "8px",
       md: "16px",
       lg: "32px",
       xl: "48px",
     },
+    fontSize: {
+      xs: "12px",
+      sm: "16px",
+      md: "18px",
+      lg: "24px",
+      xl: "36px",
+      "2xl": "44px",
+      "3xl": "56px",
+      "4xl": "64px",
+    },
     maxWidth: {
       sm: "25%",
       md: "50%",
-      lg: "75%",
+      lg: "65%",
+      xl: "75%",
+      full: "100%",
+    },
+    screens: {
+      sm: "576px",
+      // => @media (min-width: 576px) { ... }
+
+      md: "960px",
+      // => @media (min-width: 960px) { ... }
+
+      lg: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      xl: "1440px",
+      // => @media (min-width: 1440px) { ... }
+    },
+    extend: {
+      lineHeight: {
+        "6xl": "96px",
+        "5xl": "72px",
+        "4xl": "64px",
+        "3xl": "56px",
+        md: "32px",
+      },
     },
   },
 };

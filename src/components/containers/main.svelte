@@ -1,3 +1,3 @@
-<main class="w-full px-148">
+<main class="w-full">
   <slot />
 </main>

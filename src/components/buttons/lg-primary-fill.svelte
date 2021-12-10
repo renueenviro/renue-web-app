@@ -1,3 +1,5 @@
-<button class="w-240 h-72 text-2xl font-bold rounded-md bg-primary-main px-32"
-  >Get Started</button
+<button
+  class="w-240 h-72 text-lg font-bold rounded-md bg-primary-main hover:bg-secondary-main px-32"
 >
+  Get Started
+</button>
