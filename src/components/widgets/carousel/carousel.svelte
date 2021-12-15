@@ -1,0 +1,192 @@
+<script>
+  //LIBS
+  import { onMount } from "svelte";
+  import { flip } from "svelte/animate";
+  import { createEventDispatcher, onDestroy } from "svelte";
+
+  //PROPS
+  export let slides;
+  export let speed;
+  export let autoplay;
+  export let autoplaySpeed;
+  export let displayControls;
+  let interval;
+
+  const dispatch = createEventDispatcher();
+
+  onMount(async () => {
+    let root = document.querySelector(":root");
+    root.style.setProperty("--w", slides.length * 100 + "%");
+    root.style.setProperty("--controlWidth", 100 / slides.length - 2 + "%");
+  });
+
+  const handleEnterLeft = () => {
+    let chevronLeft = document.getElementById("chevronLeft");
+    chevronLeft.src = "/assets/icons/chevron-left-hover.svg";
+  };
+
+  const handleLeaveLeft = () => {
+    let chevronLeft = document.getElementById("chevronLeft");
+    chevronLeft.src = "/assets/icons/chevron-left.svg";
+  };
+
+  const handleEnterRight = () => {
+    let chevronRight = document.getElementById("chevronRight");
+    chevronRight.src = "/assets/icons/chevron-right-hover.svg";
+  };
+
+  const handleLeaveRight = () => {
+    let chevronRight = document.getElementById("chevronRight");
+    chevronRight.src = "/assets/icons/chevron-right.svg";
+  };
+
+  const rotateLeft = (e) => {
+    const transitioningSlide = slides[slides.length - 1];
+    document.getElementById(transitioningSlide.id).style.opacity = 0;
+    slides = [slides[slides.length - 1], ...slides.slice(0, slides.length - 1)];
+    document.getElementById(transitioningSlide.id).style.opacity = 1;
+  };
+
+  const rotateRight = (e) => {
+    const transitioningSlide = slides[0];
+    document.getElementById(transitioningSlide.id).style.opacity = 0;
+    slides = [...slides.slice(1, slides.length), slides[0]];
+    document.getElementById(transitioningSlide.id).style.opacity = 1;
+  };
+
+  const startAutoPlay = () => {
+    if (autoplay) {
+      interval = setInterval(rotateLeft, autoplaySpeed);
+    }
+  };
+
+  const stopAutoPlay = () => {
+    clearInterval(interval);
+  };
+
+  if (autoplay) {
+    startAutoPlay();
+  }
+
+  onDestroy(() => {
+    stopAutoPlay();
+  });
+</script>
+
+<div id="carousel-container">
+  <div id="carousel-slides">
+    {#each slides as slide (slide.id)}
+      <div
+        alt={slide.id}
+        id={slide.id}
+        on:mouseover={stopAutoPlay}
+        on:mouseout={startAutoPlay}
+        on:click={() => dispatch("imageClicked", slide.path)}
+        animate:flip={{ duration: speed }}
+      >
+        <div class="flex items-center mx-240">
+          <h1 class="text-2xl px-120">
+            Flux has dropped in price to the point where companies are having to
+            depose of it as a waste.
+          </h1>
+          <img id="thumb" class="w-720" src={slide.path} alt="" />
+        </div>
+      </div>
+    {/each}
+  </div>
+  {#if displayControls}
+    <div id="control-wrapper" class="mx-1">
+      <button id="left" on:click={rotateLeft}>
+        <slot name="left-control">
+          <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
+          <div class="w-48 h-full">
+            <img
+              id="chevronLeft"
+              src="/assets/icons/chevron-left.svg"
+              alt=""
+              on:mouseenter={handleEnterLeft}
+              on:mouseleave={handleLeaveLeft}
+            />
+          </div>
+        </slot>
+      </button>
+      <button id="right" on:click={rotateRight}>
+        <slot name="right-control">
+          <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
+          <div class="w-48 h-full">
+            <img
+              id="chevronRight"
+              src="/assets/icons/chevron-right.svg"
+              alt=""
+              on:mouseenter={handleEnterRight}
+              on:mouseleave={handleLeaveRight}
+            />
+          </div>
+        </slot>
+      </button>
+    </div>
+  {/if}
+</div>
+
+<style>
+  * {
+    overflow: hidden;
+  }
+
+  :root {
+    --w: 100%;
+    --controlWidth: 100%;
+  }
+
+  #carousel-container {
+    width: var(--w);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* overflow-x: hidden; */
+  }
+  #carousel-slides {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  #control-wrapper {
+    position: absolute;
+    width: var(--controlWidth);
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    z-index: 10;
+  }
+  button:focus {
+    outline: none;
+  }
+  #left {
+    left: 10px;
+  }
+  #right {
+    right: 10px;
+  }
+
+  #chevronRight {
+    cursor: pointer;
+  }
+
+  #chevronLeft {
+    cursor: pointer;
+  }
+</style>

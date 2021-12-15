@@ -36,6 +36,8 @@ module.exports = {
       danger: danger,
     },
     spacing: {
+      1: "1%",
+      2: "2%",
       4: "4px",
       8: "8px",
       12: "12px",
@@ -43,6 +45,7 @@ module.exports = {
       24: "24px",
       32: "32px",
       48: "48px",
+      50: "50%",
       56: "56px",
       64: "64px",
       72: "72px",

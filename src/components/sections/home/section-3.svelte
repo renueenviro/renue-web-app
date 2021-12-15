@@ -1,0 +1,41 @@
+<script>
+  import SectionContainer from "../../containers/section-one-col-center.svelte";
+</script>
+
+<SectionContainer>
+  <div
+    id="wrapper"
+    class="flex items-center h-full text-4xl font-bold text-center text-on-background-variant"
+  >
+    <h1 class="px-240">
+      We have a closed loop process with 90% heat recovery that produces 700
+      gallons of clean fuels or Lube oil base for every 1000 gallons of waste of
+      waste oil.
+    </h1>
+    <div id="alpha" class="" />
+  </div>
+</SectionContainer>
+
+<style>
+  * {
+    overflow: hidden;
+  }
+  #wrapper {
+    position: relative;
+    z-index: 1;
+    background-image: url("https://media.istockphoto.com/photos/sewage-treatment-plant-waste-water-purification-picture-id684896938?s=2048x2048");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #alpha {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+  }
+</style>
