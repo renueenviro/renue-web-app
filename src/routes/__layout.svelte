@@ -1,5 +1,9 @@
 <script>
+  //COMPONENTS
   import Navbar from "../components/navigation/navbar.svelte";
+  import Footer from "../components/navigation/footer.svelte";
+
+  //CONTAINERS
   import MainContainer from "../components/containers/main.svelte";
 
   import "../layout.css";
@@ -17,6 +21,7 @@
 <MainContainer>
   <Navbar />
   <slot />
+  <Footer />
 </MainContainer>
 
 <style>

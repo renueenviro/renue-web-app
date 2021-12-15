@@ -11,6 +11,7 @@
   import Section1 from "../components/sections/home/section-1.svelte";
   import Section2 from "../components/sections/home/section-2.svelte";
   import Section3 from "../components/sections/home/section-3.svelte";
+  import ContactSection from "../components/sections/home/contact-section.svelte";
 
   //CODE
 
@@ -84,3 +85,4 @@
 <SpacerLine />
 <Section2 />
 <Section3 />
+<ContactSection />

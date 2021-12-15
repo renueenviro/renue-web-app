@@ -2,6 +2,7 @@
 const primaryMain = "#A6CF4D";
 const primaryLight = "#D9F3A1";
 const secondaryMain = "#00BCEA";
+const secondaryDark = "#122C32";
 const tertiaryMain = "#C1C1C1";
 const backgroundLight = "#FFFFFF";
 const onBackgroundVariant = "#FFFFFF";
@@ -18,6 +19,7 @@ module.exports = {
       "primary-main": primaryMain,
       "primary-light": primaryLight,
       "secondary-main": secondaryMain,
+      "secondary-dark": secondaryDark,
       "tertiary-main": tertiaryMain,
       "on-background-variant": onBackgroundVariant,
       "on-background-variant-alpha": onBackgroundVariantAlpha,
@@ -28,6 +30,7 @@ module.exports = {
       "primary-main": primaryMain,
       "primary-light": primaryLight,
       "secondary-main": secondaryMain,
+      "secondary-dark": secondaryDark,
       "tertiary-main": tertiaryMain,
       "background-light": backgroundLight,
       "on-background-variant": onBackgroundVariant,

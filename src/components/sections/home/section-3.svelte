@@ -7,7 +7,7 @@
     id="wrapper"
     class="flex items-center h-full text-4xl font-bold text-center text-on-background-variant"
   >
-    <h1 class="px-240">
+    <h1 class="px-240 py-360">
       We have a closed loop process with 90% heat recovery that produces 700
       gallons of clean fuels or Lube oil base for every 1000 gallons of waste of
       waste oil.

@@ -1,4 +1,4 @@
-<div class="w-full h-screen">
+<div class="w-full h-auto">
   <slot />
 </div>
 
