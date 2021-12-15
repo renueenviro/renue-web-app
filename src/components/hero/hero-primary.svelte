@@ -12,7 +12,7 @@
       id="contents"
       class="text-on-background-variant pt-168 xl:px-148 lg:px-96 md:px-72"
     >
-      <h1 class="text-4xl font-bold leading-4xl">
+      <h1 class="text-6xl font-bold leading-6xl">
         {heading}
       </h1>
       <h2 class="text-4xl mt-16 font-bold leading-6xl">

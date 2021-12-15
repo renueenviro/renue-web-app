@@ -83,6 +83,7 @@ module.exports = {
       "2xl": "44px",
       "3xl": "56px",
       "4xl": "64px",
+      "6xl": "96px",
     },
     maxWidth: {
       sm: "25%",
@@ -106,6 +107,7 @@ module.exports = {
     },
     extend: {
       lineHeight: {
+        "8xl": "110px",
         "6xl": "96px",
         "5xl": "72px",
         "4xl": "64px",
