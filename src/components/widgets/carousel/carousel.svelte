@@ -3,9 +3,11 @@
   import { onMount } from "svelte";
   import { flip } from "svelte/animate";
   import { createEventDispatcher, onDestroy } from "svelte";
+  import Icon from "@iconify/svelte";
 
   //COMPONENTS
   import Paginator from "../../navigation/paginator.svelte";
+  import Button from "../../buttons/md-primary-icon-fill.svelte";
 
   //PROPS
   export let slides;
@@ -99,20 +101,34 @@
         on:mouseover={stopAutoPlay}
         on:mouseout={startAutoPlay}
         on:click={() => dispatch("imageClicked", slide.path)}
+        on:blur={() => console.log("BLUR")}
+        on:focus={() => console.log("FOCUS")}
         animate:flip={{ duration: speed }}
       >
         <div class="flex items-center xl:mx-120 md:mx-120">
           <img id="thumb" class="w-720" src={slide.path} alt="" />
-          <div class="space-y-16">
-            <h1
-              class="text-primary-main text-xl md:xl-120 md:px-72 font-extrabold"
-            >
-              Heading Title Here
-            </h1>
-            <h1 class="text-lg md:xl-120 md:px-72">
-              Flux has dropped in price to the point where companies are having
-              to depose of it as a waste.
-            </h1>
+          <div class="px-72 space-y-32">
+            <div class="flex items-center">
+              <div class="text-2xl text-primary-main">
+                <Icon icon="carbon:flood-warning" />
+              </div>
+              <h1 class="text-primary-main text-xl font-bold px-16">
+                Heading Title Here
+              </h1>
+            </div>
+
+            <div class="text-lg">
+              <h1 class="">
+                Flux has dropped in price to the point where companies are
+                having to depose of it as a waste.
+              </h1>
+            </div>
+
+            <Button
+              icon_label="ic:baseline-read-more"
+              label="Read More"
+              url="/contact"
+            />
           </div>
         </div>
       </div>
@@ -163,6 +179,10 @@
 <style>
   * {
     overflow: hidden;
+  }
+
+  a {
+    cursor: pointer;
   }
 
   :root {

@@ -22,5 +22,7 @@
       {label}
     </a>
   </div>
-  <div {id} class="h-8 w-full" />
+  <div class="flex justify-center ">
+    <div {id} class="h-8 w-75" />
+  </div>
 </div>

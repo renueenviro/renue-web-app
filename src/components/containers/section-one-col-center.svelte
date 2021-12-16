@@ -1,4 +1,4 @@
-<div class="w-full h-auto">
+<div class="flex justify-center w-full h-auto">
   <slot />
 </div>
 

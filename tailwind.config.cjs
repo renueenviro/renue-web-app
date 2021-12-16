@@ -15,6 +15,10 @@ module.exports = {
   mode: "jit",
   purge: ["./src/**/*.svelte"],
   theme: {
+    colors: {
+      "primary-main": primaryMain,
+      "secondary-main": secondaryMain,
+    },
     textColor: {
       "primary-main": primaryMain,
       "primary-light": primaryLight,
@@ -52,6 +56,7 @@ module.exports = {
       56: "56px",
       64: "64px",
       72: "72px",
+      75: "75%",
       80: "80px",
       96: "96px",
       120: "120px",

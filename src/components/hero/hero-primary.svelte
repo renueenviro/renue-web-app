@@ -1,5 +1,5 @@
 <script>
-  import Button from "../buttons/lg-primary-fill.svelte";
+  import Button from "../buttons/lg-primary-icon-fill.svelte";
   export let heading, subheading, paragraph;
 
   let splitted = subheading.split("%%");
@@ -23,7 +23,11 @@
         {paragraph}
       </h2>
       <div class="mt-56">
-        <Button />
+        <Button
+          icon_label="ic:outline-eco"
+          label="Get Started"
+          url="/contact"
+        />
       </div>
     </div>
   </div>
