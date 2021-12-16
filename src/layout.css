@@ -10,5 +10,5 @@ body {
 }
 
 .gradient-bg-dark-secondary {
-  background: linear-gradient(180deg, #3fc4e5, 1%, #032027);
+  background: linear-gradient(180deg, #3fc4e5, #032027 20%);
 }
