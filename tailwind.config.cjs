@@ -18,6 +18,7 @@ module.exports = {
     colors: {
       "primary-main": primaryMain,
       "secondary-main": secondaryMain,
+      "secondary-dark": secondaryDark,
     },
     textColor: {
       "primary-main": primaryMain,
@@ -51,6 +52,7 @@ module.exports = {
       16: "16px",
       24: "24px",
       32: "32px",
+      40: "40px",
       48: "48px",
       50: "50%",
       56: "56px",

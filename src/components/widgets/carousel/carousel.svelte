@@ -112,7 +112,7 @@
               <div class="text-2xl text-primary-main">
                 <Icon icon="carbon:flood-warning" />
               </div>
-              <h1 class="text-primary-main text-xl font-bold px-16">
+              <h1 class="text-scondary-dark text-xl font-bold px-16">
                 Heading Title Here
               </h1>
             </div>
