@@ -14,7 +14,7 @@
       <p>©RENUE, All rights reserved</p>
     </div>
     <div
-      class="flex items-center xl:space-x-48 lg:space-x-32 text-2xl text-secondary-dark"
+      class="flex items-center xl:space-x-48 sm:space-x-32 text-2xl text-secondary-dark"
     >
       <a href="">
         <Icon icon="akar-icons:twitter-fill" />

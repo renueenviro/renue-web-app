@@ -12,10 +12,10 @@
       id="contents"
       class="text-on-background-variant pt-168 xl:px-148 lg:px-96 md:px-72"
     >
-      <h1 class="text-6xl font-bold leading-6xl">
+      <h1 class="text-4xl font-bold leading-6xl">
         {heading}
       </h1>
-      <h2 class="text-4xl mt-16 font-bold leading-6xl">
+      <h2 class="text-4xl font-bold leading-4xl">
         {splitted[0]}<span class="text-primary-main">{splitted[1]}</span
         >{splitted[2]}
       </h2>
@@ -51,7 +51,11 @@
     min-height: 800px;
     width: 100%;
     z-index: -10;
-    background: linear-gradient(to bottom, #0f1011de, rgba(53, 53, 53, 0.541));
+    background: linear-gradient(
+      to bottom right,
+      #0b1d2ee5 40%,
+      rgba(53, 53, 53, 0.541)
+    );
   }
 
   #contents {

@@ -7,7 +7,7 @@
 
 <SectionContainer>
   <div
-    class="flex items-center w-full text-on-background-variant text-4xl leading-5xl text-left"
+    class="flex items-center w-full text-on-background-variant md:text-2xl md:leading-3xl text-left"
   >
     <h1>
       Most of the used oil generated in the refining process is adding to world

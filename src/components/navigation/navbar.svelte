@@ -12,13 +12,13 @@
   id="wrapper"
   class="w-full xl:px-148 lg:px-96 md:px-72 h-72 bg-on-background-variant-alpha"
 >
-  <nav class="flex py-16 xl:text-lg lg:text-lg md:text-md">
+  <nav class="flex py-16 lg:text-md md:text-md">
     <div class="flex-grow">
       <a class="" href="/">
-        <img src="assets/logo.png" alt="Renue Logo" class="w-200" />
+        <img src="assets/logo.png" alt="Renue Logo" class="md:w-168" />
       </a>
     </div>
-    <div class="flex items-center xl:space-x-32 lg:space-x-32">
+    <div class="flex items-center xl:space-x-16 lg:space-x-32">
       <MenuItem label="Who We Are" url={"/" + label1} id={label1} />
       <MenuItem label="What We Do" url={"/" + label2} id={label2} />
       <MenuItem label="Leadership" url={"/" + label3} id={label3} />

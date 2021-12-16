@@ -4,13 +4,18 @@
   import { flip } from "svelte/animate";
   import { createEventDispatcher, onDestroy } from "svelte";
 
+  //COMPONENTS
+  import Paginator from "../../navigation/paginator.svelte";
+
   //PROPS
   export let slides;
   export let speed;
   export let autoplay;
   export let autoplaySpeed;
   export let displayControls;
+
   let interval;
+  let paginatorIndex = 0;
 
   const dispatch = createEventDispatcher();
 
@@ -45,6 +50,12 @@
     document.getElementById(transitioningSlide.id).style.opacity = 0;
     slides = [slides[slides.length - 1], ...slides.slice(0, slides.length - 1)];
     document.getElementById(transitioningSlide.id).style.opacity = 1;
+
+    paginatorIndex++;
+    if (paginatorIndex >= slides.length) {
+      paginatorIndex = 0;
+    }
+    console.log(paginatorIndex);
   };
 
   const rotateRight = (e) => {
@@ -52,11 +63,17 @@
     document.getElementById(transitioningSlide.id).style.opacity = 0;
     slides = [...slides.slice(1, slides.length), slides[0]];
     document.getElementById(transitioningSlide.id).style.opacity = 1;
+
+    paginatorIndex++;
+    if (paginatorIndex >= slides.length) {
+      paginatorIndex = 0;
+    }
+    console.log(paginatorIndex);
   };
 
   const startAutoPlay = () => {
     if (autoplay) {
-      interval = setInterval(rotateLeft, autoplaySpeed);
+      interval = setInterval(rotateRight, autoplaySpeed);
     }
   };
 
@@ -84,12 +101,19 @@
         on:click={() => dispatch("imageClicked", slide.path)}
         animate:flip={{ duration: speed }}
       >
-        <div class="flex items-center mx-240">
-          <h1 class="text-2xl px-120">
-            Flux has dropped in price to the point where companies are having to
-            depose of it as a waste.
-          </h1>
+        <div class="flex items-center xl:mx-120 md:mx-120">
           <img id="thumb" class="w-720" src={slide.path} alt="" />
+          <div class="space-y-16">
+            <h1
+              class="text-primary-main text-xl md:xl-120 md:px-72 font-extrabold"
+            >
+              Heading Title Here
+            </h1>
+            <h1 class="text-lg md:xl-120 md:px-72">
+              Flux has dropped in price to the point where companies are having
+              to depose of it as a waste.
+            </h1>
+          </div>
         </div>
       </div>
     {/each}
@@ -99,7 +123,7 @@
       <button id="left" on:click={rotateLeft}>
         <slot name="left-control">
           <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
-          <div class="w-48 h-full">
+          <div class="w-32 h-full">
             <img
               id="chevronLeft"
               src="/assets/icons/chevron-left.svg"
@@ -113,7 +137,7 @@
       <button id="right" on:click={rotateRight}>
         <slot name="right-control">
           <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
-          <div class="w-48 h-full">
+          <div class="w-32 h-full">
             <img
               id="chevronRight"
               src="/assets/icons/chevron-right.svg"
@@ -124,6 +148,14 @@
           </div>
         </slot>
       </button>
+      <div
+        id="paginator-container"
+        class="flex justify-center w-full space-x-12"
+      >
+        {#each slides as slide (slide.id)}
+          <Paginator is_active={false} />
+        {/each}
+      </div>
     </div>
   {/if}
 </div>
@@ -188,5 +220,10 @@
 
   #chevronLeft {
     cursor: pointer;
+  }
+
+  #paginator-container {
+    position: absolute;
+    bottom: 0;
   }
 </style>
