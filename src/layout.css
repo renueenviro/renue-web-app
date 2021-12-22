@@ -12,3 +12,15 @@ body {
 .gradient-bg-dark-secondary {
   background: linear-gradient(180deg, #3fc4e5, #032027 20%);
 }
+
+/*ANIMATIONS*/
+@keyframes -global-scale-in-center {
+  0% {
+    transform: rotateX(50deg) translateX(-200vw) skewX(-50deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(0deg) translateX(0) skewX(0deg);
+    opacity: 1;
+  }
+}

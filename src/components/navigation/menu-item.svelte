@@ -18,7 +18,7 @@
     on:mouseenter={handleMouseEnter}
     on:mouseleave={handleMouseleave}
   >
-    <a class="hover:text-primary-main" href={url}>
+    <a class="hover:text-secondary-main" href={url}>
       {label}
     </a>
   </div>

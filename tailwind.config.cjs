@@ -1,6 +1,7 @@
 //COLORS
 const primaryMain = "#A6CF4D";
 const primaryLight = "#D9F3A1";
+const primaryDark = "#2D3B0F";
 const secondaryMain = "#00BCEA";
 const secondaryDark = "#122C32";
 const tertiaryMain = "#C1C1C1";
@@ -23,6 +24,7 @@ module.exports = {
     textColor: {
       "primary-main": primaryMain,
       "primary-light": primaryLight,
+      "primary-dark": primaryDark,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
       "tertiary-main": tertiaryMain,

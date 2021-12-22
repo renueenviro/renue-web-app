@@ -1,8 +1,7 @@
 <script>
   //LIBS
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher, onDestroy } from "svelte";
   import { flip } from "svelte/animate";
-  import { createEventDispatcher, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
 
   //COMPONENTS
@@ -18,8 +17,9 @@
 
   let interval;
   let paginatorIndex = 0;
+  let isPaginatorActive = false;
 
-  const dispatch = createEventDispatcher();
+  // const dispatch = createEventDispatcher();
 
   onMount(async () => {
     let root = document.querySelector(":root");
@@ -57,7 +57,8 @@
     if (paginatorIndex >= slides.length) {
       paginatorIndex = 0;
     }
-    console.log(paginatorIndex);
+
+    slides[paginatorIndex].active = true;
   };
 
   const rotateRight = (e) => {
@@ -70,7 +71,9 @@
     if (paginatorIndex >= slides.length) {
       paginatorIndex = 0;
     }
-    console.log(paginatorIndex);
+    // console.log(paginatorIndex);
+
+    slides[paginatorIndex].active = true;
   };
 
   const startAutoPlay = () => {
@@ -100,7 +103,6 @@
         id={slide.id}
         on:mouseover={stopAutoPlay}
         on:mouseout={startAutoPlay}
-        on:click={() => dispatch("imageClicked", slide.path)}
         on:blur={() => console.log("BLUR")}
         on:focus={() => console.log("FOCUS")}
         animate:flip={{ duration: speed }}
@@ -113,22 +115,22 @@
                 <Icon icon="carbon:flood-warning" />
               </div>
               <h1 class="text-scondary-dark text-xl font-bold px-16">
-                Heading Title Here
+                {slide.headline}
               </h1>
             </div>
 
             <div class="text-lg">
               <h1 class="">
-                Flux has dropped in price to the point where companies are
-                having to depose of it as a waste.
+                {slide.paragraph}
               </h1>
             </div>
-
-            <Button
-              icon_label="ic:baseline-read-more"
-              label="Read More"
-              url="/contact"
-            />
+            <div id="more-btn">
+              <Button
+                icon_label="ic:baseline-read-more"
+                label="Read More"
+                url="/contact"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -168,9 +170,9 @@
         id="paginator-container"
         class="flex justify-center w-full space-x-12"
       >
-        {#each slides as slide (slide.id)}
-          <Paginator is_active={false} />
-        {/each}
+        <!-- {#each slides as slide (slide.id)} -->
+        <Paginator {slides} />
+        <!-- {/each} -->
       </div>
     </div>
   {/if}
@@ -213,6 +215,9 @@
     z-index: 10;
   }
 
+  #more-btn {
+  }
+
   button {
     position: absolute;
     top: 50%;
@@ -222,7 +227,6 @@
     justify-content: center;
     background: transparent;
     border: none;
-    z-index: 10;
   }
   button:focus {
     outline: none;

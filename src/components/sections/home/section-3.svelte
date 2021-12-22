@@ -1,5 +1,9 @@
 <script>
+  //CONTAINERS
   import SectionContainer from "../../containers/section-one-col-center.svelte";
+
+  //PROPS
+  export let data;
 </script>
 
 <SectionContainer>
@@ -8,9 +12,7 @@
     class="flex items-center h-full xl:text-4xl md:text-2xl xl:leading-6xl md:leading-4xl font-bold text-center text-on-background-variant"
   >
     <h1 class="px-168 py-360">
-      We have a closed loop process with 90% heat recovery that produces 700
-      gallons of clean fuels or Lube oil base for every 1000 gallons of waste of
-      waste oil.
+      {data.headline}
     </h1>
     <div id="gradient" class="" />
   </div>
