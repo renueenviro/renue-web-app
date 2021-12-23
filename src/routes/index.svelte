@@ -33,12 +33,12 @@
     const res = await fetch(url);
     const data = await res.json();
 
-    //console.log(data);
+    console.log(data.results[2].data.body[1].items);
 
     let sections = [];
     let carouselSlides = [];
 
-    data.results[0].data.body[1].items.forEach((item) => {
+    data.results[2].data.body[1].items.forEach((item) => {
       // console.log(item.thumbnail.url);
       let tmpData = {
         image_url: item.thumbnail.url,
@@ -48,57 +48,73 @@
       carouselSlides.push(tmpData);
     });
 
-    await data.results.map((data, index) => {
-      data.data.body.forEach((section) => {
-        //console.log("section", section);
-        sections.push(section);
-      });
+    // await data.results.map((data, index) => {
+    console.log("section", data.results[2].data.body[4].primary);
 
-      console.log("original data", data);
+    // data.data.body.forEach((section) => {
+    //   //console.log("section", section);
+    //   sections.push(section);
+    // });
 
-      let cleanData = {
-        sections: sections,
-        hero: {
-          id: data.id,
-          uid: data.uid,
-          image_url: data.data.body[0].primary["bg-image"].url,
-          slice_type: data.data.body[0].slice_type,
-          button_label: data.data.body[0].primary.button_label,
-          heading: data.data.body[0].primary.heading[0].text,
-          subheading: data.data.body[0].primary.subheading[0].text,
-          paragraph: data.data.body[0].primary.paragraph[0].text,
+    // data.results[2].data.body[0].items.forEach((item) => {
+    //   // console.log(item.thumbnail.url);
+    //   let tmpData = {
+    //     image_url: item.thumbnail.url,
+    //     headline: item.headline[0].text,
+    //     paragraph: item.paragraph[0].text,
+    //   };
+    //   carouselSlides.push(tmpData);
+    // });
+
+    console.log("original data", data);
+
+    let cleanData = {
+      sections: sections,
+      navbar: {},
+      hero: {
+        id: data.id,
+        uid: data.uid,
+        image_url: data.results[2].data.body[0].primary["bg-image"].url,
+        slice_type: data.results[2].data.body[0].slice_type,
+        button_label: data.results[2].data.body[0].primary.button_label,
+        heading: data.results[2].data.body[0].primary.heading[0].text,
+        subheading: data.results[2].data.body[0].primary.subheading[0].text,
+        paragraph: data.results[2].data.body[0].primary.paragraph[0].text,
+      },
+      section1: {
+        carousel: {
+          slides: carouselSlides,
         },
-        section1: {
-          carousel: {
-            slides: carouselSlides,
-          },
-        },
-        section2: {
-          headline: data.data.body[2].items[0].headline[0].text,
-          paragraph: data.data.body[2].items[0].paragraph[0].text,
-          start: data.data.body[2].items[0].paragraph[0].spans[0].start,
-          end: data.data.body[2].items[0].paragraph[0].spans[0].end,
-        },
-        section3: {
-          headline: data.data.body[3].primary.headline[0].text,
-        },
-        contact: {
-          headline: data.data.body[4].primary.headline[0].text,
-          start: data.data.body[4].primary.headline[0].spans[0].start,
-          end: data.data.body[4].primary.headline[0].spans[0].end,
-        },
-      };
-      //console.log("cleanData", cleanData);
-      callback(cleanData);
-    });
+      },
+      section2: {
+        headline: data.results[2].data.body[2].items[0].headline[0].text,
+        paragraph: data.results[2].data.body[2].items[0].paragraph[0].text,
+        start:
+          data.results[2].data.body[2].items[0].paragraph[0].spans[0].start,
+        end: data.results[2].data.body[2].items[0].paragraph[0].spans[0].end,
+      },
+      section3: {
+        headline: data.results[2].data.body[3].primary.headline[0].text,
+      },
+      contact: {
+        headline: data.results[2].data.body[4].primary.headline[0].text,
+        start: data.results[2].data.body[4].primary.headline[0].spans[0].start,
+        end: data.results[2].data.body[4].primary.headline[0].spans[0].end,
+      },
+    };
+    //console.log("cleanData", cleanData);
+    callback(cleanData);
+    // });
   };
 
+  let navbarData;
   let heroData;
   let section1Data, section2Data, section3Data;
   let contactData;
 
   fetchData($cms_url, async (data) => {
     //console.log("hero", data.hero);
+    navbarData = await data.navbar;
     heroData = await data.hero;
     section1Data = await data.section1;
     section2Data = await data.section2;

@@ -1,6 +1,7 @@
-import { readable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 
 export const cms_url = readable("https://renue-web-app.prismic.io/api/v2");
+// export const navbar_data = writable([]);
 
 /*
 import { writable } from "svelte/store";
