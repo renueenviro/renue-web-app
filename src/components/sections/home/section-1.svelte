@@ -14,8 +14,6 @@
   let id = 1;
 
   data.carousel.slides.forEach((slide) => {
-    // console.log(slide);
-
     let isActive;
 
     if (id == 1) {
@@ -30,13 +28,14 @@
       paragraph: slide.paragraph,
       id: id,
       active: isActive,
+      button_url: slide.button_url,
     });
 
     id++;
   });
 
   const handleImageClicked = (e) => {
-    console.log(e.detail);
+    //console.log(e.detail);
   };
 </script>
 

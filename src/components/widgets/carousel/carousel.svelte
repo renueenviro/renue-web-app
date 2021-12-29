@@ -1,12 +1,12 @@
 <script>
   //LIBS
-  import { onMount, createEventDispatcher, onDestroy } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { flip } from "svelte/animate";
   import Icon from "@iconify/svelte";
 
   //COMPONENTS
   import Paginator from "../../navigation/paginator.svelte";
-  import Button from "../../buttons/md-primary-icon-fill.svelte";
+  import Button from "../../buttons/md-primary-icon-outlined.svelte";
 
   //PROPS
   export let slides;
@@ -17,9 +17,8 @@
 
   let interval;
   let paginatorIndex = 0;
-  let isPaginatorActive = false;
 
-  // const dispatch = createEventDispatcher();
+  // console.log(slides);
 
   onMount(async () => {
     let root = document.querySelector(":root");
@@ -128,7 +127,7 @@
               <Button
                 icon_label="ic:baseline-read-more"
                 label="Read More"
-                url="/contact"
+                url={slide.button_url.url}
               />
             </div>
           </div>
@@ -137,7 +136,7 @@
     {/each}
   </div>
   {#if displayControls}
-    <div id="control-wrapper" class="mx-1">
+    <div id="control-wrapper-left" class="mx-1">
       <button id="left" on:click={rotateLeft}>
         <slot name="left-control">
           <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
@@ -152,9 +151,10 @@
           </div>
         </slot>
       </button>
+    </div>
+    <div id="control-wrapper-right" class="mx-1">
       <button id="right" on:click={rotateRight}>
         <slot name="right-control">
-          <!-- <div class="xl:w-48 lg:w-56 md:w-120 sm:w-96"> -->
           <div class="w-32 h-full">
             <img
               id="chevronRight"
@@ -166,14 +166,12 @@
           </div>
         </slot>
       </button>
-      <div
+      <!-- <div
         id="paginator-container"
         class="flex justify-center w-full space-x-12"
       >
-        <!-- {#each slides as slide (slide.id)} -->
         <Paginator {slides} />
-        <!-- {/each} -->
-      </div>
+      </div> -->
     </div>
   {/if}
 </div>
@@ -189,7 +187,6 @@
 
   :root {
     --w: 100%;
-    --controlWidth: 100%;
   }
 
   #carousel-container {
@@ -206,12 +203,21 @@
     z-index: 1;
   }
 
-  #control-wrapper {
+  #control-wrapper-left {
     position: absolute;
-    width: var(--controlWidth);
+    width: 5%;
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 10;
+  }
+
+  #control-wrapper-right {
+    position: absolute;
+    width: 5%;
+    height: 100%;
+    top: 0;
+    right: 50%;
     z-index: 10;
   }
 

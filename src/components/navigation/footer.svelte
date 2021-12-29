@@ -1,5 +1,13 @@
 <script>
+  //LIBS
   import Icon from "@iconify/svelte";
+
+  //STORES
+  import { footer_data } from "../../stores/renuestore";
+
+  let socialItems = $footer_data.social;
+
+  // console.log($footer_data);
 </script>
 
 <div
@@ -9,22 +17,18 @@
   <nav class="flex items-center py-32 xl:text-lg lg:text-lg md:text-md">
     <div class="flex flex-grow space-x-32 text-sm">
       <a href="/">
-        <img src="assets/logo.png" alt="Renue Logo" class="w-120" />
+        <img src={$footer_data.logo.url} alt="Renue Logo" class="w-120" />
       </a>
-      <p>©RENUE, All rights reserved</p>
+      <p>{$footer_data.copyright[0].text}</p>
     </div>
-    <div
-      class="flex items-center xl:space-x-48 sm:space-x-32 text-2xl text-secondary-dark"
-    >
-      <a href="">
-        <Icon icon="akar-icons:twitter-fill" />
-      </a>
-      <a href="">
-        <Icon icon="akar-icons:facebook-fill" />
-      </a>
-      <a href="">
-        <Icon icon="akar-icons:youtube-fill" />
-      </a>
+    <div class="flex items-center xl:space-x-48 sm:space-x-32 text-2xl">
+      {#each socialItems as item}
+        <a href="">
+          <div class="text-secondary-dark hover:text-secondary-main">
+            <Icon icon={"akar-icons:" + item.id + "-fill"} />
+          </div>
+        </a>
+      {/each}
     </div>
   </nav>
 </div>

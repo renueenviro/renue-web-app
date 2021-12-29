@@ -1,56 +1,46 @@
 import { readable, writable } from "svelte/store";
 
-export const cms_url = readable("https://renue-web-app.prismic.io/api/v2");
-// export const navbar_data = writable([]);
+const repoUrl = "https://renue-web-app.prismic.io/api/v2";
 
-/*
-import { writable } from "svelte/store";
-
-export const document = writable([]);
-
-const repoUrl = 'https://renue-web-app.prismic.io/api/v2';
+export const cms_url = readable(repoUrl);
+export const navbar_data = writable({});
+export const footer_data = writable({});
 
 const fetchRefs = async () => {
-	const res = await fetch(repoUrl);
-	const data = await res.json();
-	return data.refs;
+  const res = await fetch(repoUrl);
+  const data = await res.json();
+  return data.refs;
 };
 
-const fetchData = async () => {
-	const refs = await fetchRefs();
+const fetchData = async (callback) => {
+  const refs = await fetchRefs();
 
-	const masterRef = await refs.map((ref, index) => {
-		return ref.ref;
-	});
+  const masterRef = await refs.map((ref, index) => {
+    return ref.ref;
+  });
 
-	const url = repoUrl + '/documents/search?ref=' + masterRef + '#format=json';
-	const res = await fetch(url);
-	const data = await res.json();
+  const url = repoUrl + "/documents/search?ref=" + masterRef + "#format=json";
+  const res = await fetch(url);
+  const data = await res.json();
 
-	let sections = [];
+  let navBarData = {};
+  let footerData = {};
 
-	const loadedData = await data.results.map((data, index) => {
-		//console.log(data.data.body);
+  await data.results.map((data, index) => {
+    if (data.slugs[0] === "navbar") {
+      navBarData = data.data;
+    }
+    if (data.slugs[0] === "footer") {
+      footerData = data.data;
+    }
+  });
 
-		data.data.body.forEach((section) => {
-			//console.log('section', section);
-			sections.push(section);
-		});
-
-		return {
-			sections: sections
-		};
-
-		// return {
-		// 	id: data.id,
-		// 	uid: data.uid,
-		// 	image_url: data.data.body[0].primary.icon_image.url,
-		// 	slice_type: data.data.body[0].slice_type,
-		// 	button_label: data.data.body[0].primary.button_label
-		// };
-	});
-	document.set(loadedData);
+  callback(navBarData, footerData);
 };
 
-fetchData();
-*/
+await fetchData((navbar, footer) => {
+  //   console.log("navbar", navbar);
+  //   console.log("footer", footer);
+  navbar_data.set(navbar);
+  footer_data.set(footer);
+});

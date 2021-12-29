@@ -1,11 +1,11 @@
 <script>
+  //COMPONENTS
   import MenuItem from "./menu-item.svelte";
 
-  let label1 = "who-we-are";
-  let label2 = "what-we-do";
-  let label3 = "leadership";
-  let label4 = "news";
-  let label5 = "contact";
+  //STORES
+  import { navbar_data } from "../../stores/renuestore";
+
+  let menuItems = $navbar_data["menu-item"];
 </script>
 
 <div
@@ -15,15 +15,13 @@
   <nav class="flex py-16 lg:text-md md:text-md">
     <div class="flex-grow">
       <a class="" href="/">
-        <img src="assets/logo.png" alt="Renue Logo" class="md:w-168" />
+        <img src={$navbar_data.logo.url} alt="Renue Logo" class="md:w-168" />
       </a>
     </div>
     <div class="flex items-center xl:space-x-16 lg:space-x-32">
-      <MenuItem label="Who We Are" url={"/" + label1} id={label1} />
-      <MenuItem label="What We Do" url={"/" + label2} id={label2} />
-      <MenuItem label="Leadership" url={"/" + label3} id={label3} />
-      <MenuItem label="News" url={"/" + label4} id={label4} />
-      <MenuItem label="Contact" url={"/" + label5} id={label5} />
+      {#each menuItems as item}
+        <MenuItem label={item.label} url={item.url} id={item.label} />
+      {/each}
     </div>
   </nav>
 </div>
