@@ -26,7 +26,7 @@ const fetchData = async (callback) => {
   let navBarData = {};
   let footerData = {};
 
-  await data.results.map((data, index) => {
+  data.results.map((data, index) => {
     if (data.slugs[0] === "navbar") {
       navBarData = data.data;
     }
