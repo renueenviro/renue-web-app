@@ -1,6 +1,7 @@
 //COLORS
 const primaryMain = "#A6CF4D";
 const primaryLight = "#D9F3A1";
+const primaryLightVariant = "#E3E9DA";
 const primaryDark = "#2D3B0F";
 const secondaryMain = "#00BCEA";
 const secondaryDark = "#122C32";
@@ -18,12 +19,20 @@ module.exports = {
   theme: {
     colors: {
       "primary-main": primaryMain,
+      "primary-light": primaryLight,
+      "primary-dark": primaryDark,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
+      "tertiary-main": tertiaryMain,
+      "on-background-variant": onBackgroundVariant,
+      "on-background-variant-alpha": onBackgroundVariantAlpha,
+      transparent: transparent,
+      danger: danger,
     },
     textColor: {
       "primary-main": primaryMain,
       "primary-light": primaryLight,
+      "primary-light-variant": primaryLightVariant,
       "primary-dark": primaryDark,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
@@ -70,7 +79,9 @@ module.exports = {
       200: "200px",
       240: "240px",
       256: "256px",
+      292: "292px",
       360: "360px",
+      392: "392px",
       400: "400px",
       440: "440px",
       480: "480px",

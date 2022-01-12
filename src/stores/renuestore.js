@@ -6,6 +6,7 @@ export const cms_url = readable(repoUrl);
 export const navbar_data = writable({});
 export const footer_data = writable({});
 
+/*
 const fetchRefs = async () => {
   const res = await fetch(repoUrl);
   const data = await res.json();
@@ -39,8 +40,9 @@ const fetchData = async (callback) => {
 };
 
 fetchData((navbar, footer) => {
-  //   console.log("navbar", navbar);
-  //   console.log("footer", footer);
+  // console.log("navbar", navbar);
+  // console.log("footer", footer);
   navbar_data.set(navbar);
   footer_data.set(footer);
 });
+*/

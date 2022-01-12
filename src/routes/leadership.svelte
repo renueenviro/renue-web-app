@@ -1,11 +1,14 @@
 <script>
+  //LIBS
+  import { onMount } from "svelte";
+
   //STORES
   import { cms_url } from "../stores/renuestore";
 
   //SECTIONS
-  import HeroSection from "../components/sections/who-we-are/hero-section.svelte";
-  import Section1 from "../components/sections/who-we-are/section-1.svelte";
-  import Section2 from "../components/sections/who-we-are/section-2.svelte";
+  import HeroSection from "../components/sections/leadership/hero-section.svelte";
+  import Section1 from "../components/sections/leadership/section-1.svelte";
+  import Section2 from "../components/sections/leadership/section-2.svelte";
   import Section3 from "../components/sections/who-we-are/section-3.svelte";
   import ContactSection from "../components/sections/who-we-are/contact-section.svelte";
 
@@ -30,7 +33,7 @@
     const res = await fetch(url);
     const data = await res.json();
 
-    //console.log(data);
+    // console.log("Leadership", data);
 
     let hero_data = {};
     let section_1_data = {};
@@ -38,26 +41,25 @@
     let section_3_data = {};
     let contact_data = {};
 
-    data.results.forEach((result, i) => {
+    await data.results.forEach((result, i) => {
       //console.log(index, result.uid);
-      if (result.uid === "who-we-are") {
+      if (result.uid === "leadership") {
         //console.log(result.data.body);
         result.data.body.forEach((section, j) => {
-          //console.log(section);
+          //console.log(section.primary.image.url);
           if (section.slice_type === "hero-section") {
-            hero_data.imageUrl = section.primary.image_url.url;
+            hero_data.imageUrl = section.primary.image.url;
             hero_data.headline = section.primary.headline[0].text;
             hero_data.paragraph = section.primary.paragraph[0].text;
           }
 
           if (section.slice_type === "section-1") {
-            console.log(section.primary.image.url);
+            // console.log(section.primary.image.url);
             section_1_data.imageUrl = section.primary.image.url;
             section_1_data.paragraph = section.primary.paragraph[0].text;
           }
 
           if (section.slice_type === "section-2") {
-            //console.log(section);
             section.items.forEach((item, i) => {
               let tmp = {};
               if (i == 0) {
@@ -65,10 +67,12 @@
               } else {
                 tmp.visible = false;
               }
-              tmp.paragraph = item.paragraph[0].text;
-              tmp.imageUrl = item["image-url"].url;
-              tmp.label = item["interactive-menu-item"][0].text;
-              tmp.id = item["interactive-menu-item"][0].text.toLowerCase();
+              tmp.more = item.more[0].text;
+              tmp.name = item.name[0].text;
+              tmp.role = item.role[0].text;
+              tmp.img_url = item.profile.url;
+
+              //console.log("tmp", tmp);
 
               section_2_data.push(tmp);
             });
@@ -101,7 +105,9 @@
         image_url: section_1_data.imageUrl,
         paragraph: section_1_data.paragraph,
       },
-      section2: section_2_data,
+      section2: {
+        section_2_data,
+      },
       section3: { headline: section_3_data.headline },
       contact: {
         headline: contact_data.headline,
@@ -118,12 +124,14 @@
   let section1Data, section2Data, section3Data;
   let contactData;
 
-  fetchData($cms_url, async (data) => {
-    heroData = await data.hero;
-    section1Data = await data.section1;
-    section2Data = await data.section2;
-    section3Data = await data.section3;
-    contactData = await data.contact;
+  onMount(async () => {
+    fetchData($cms_url, async (data) => {
+      heroData = await data.hero;
+      section1Data = await data.section1;
+      section2Data = await data.section2;
+      section3Data = await data.section3;
+      contactData = await data.contact;
+    });
   });
 </script>
 
@@ -157,6 +165,7 @@
   {/if}
 {/await}
 
+<!-- 
 <SpacerLine />
 
 {#await section3Data}
@@ -173,4 +182,4 @@
   {#if data !== undefined}
     <ContactSection {data} />
   {/if}
-{/await}
+{/await} -->

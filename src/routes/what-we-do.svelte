@@ -1,12 +1,12 @@
 <script>
-	//STORES
+  //STORES
 
-	//LIBS
+  //LIBS
 
-	//COMPONENTS
-	import ThreejsViewer from '../components/widgets/threejs/threejs-viewer.svelte';
+  //COMPONENTS
+  import ThreejsViewer from "../components/widgets/threejs/threejs-viewer.svelte";
 
-	//SECTIONS
+  //SECTIONS
 </script>
 
-<ThreejsViewer />
+<!-- <ThreejsViewer /> -->

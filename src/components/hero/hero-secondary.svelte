@@ -1,6 +1,16 @@
 <script>
+  //LIBS
+  import { onMount } from "svelte";
+
   //PROPS
-  export let headline, paragraph;
+  export let headline, paragraph, image_url;
+
+  onMount(async () => {
+    let root = document.documentElement;
+    //let style = getComputedStyle(document.body);
+    await root.style.setProperty("--image-url", "url(" + image_url + ")");
+    //console.log("XXXX:", style.getPropertyValue("--image-url"));
+  });
 </script>
 
 <div id="wrapper">
@@ -35,12 +45,17 @@
   * {
     overflow: hidden;
   }
+
+  :root {
+    --image-url: url("https://media.istockphoto.com/photos/stainless-steel-pipes-and-pipelines-in-modern-beer-factory-brewery-picture-id1152495926");
+  }
+
   #wrapper {
     position: relative;
     z-index: 1;
     min-height: 800px;
     margin: auto;
-    background-image: url("https://media.istockphoto.com/photos/stainless-steel-pipes-and-pipelines-in-modern-beer-factory-brewery-picture-id1152495926");
+    background-image: var(--image-url);
     background-repeat: no-repeat;
     background-size: cover;
   }

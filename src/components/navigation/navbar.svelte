@@ -1,11 +1,55 @@
 <script>
+  //LIBS
+  import { onMount } from "svelte";
+
   //COMPONENTS
   import MenuItem from "./menu-item.svelte";
 
   //STORES
-  import { navbar_data } from "../../stores/renuestore";
+  import { cms_url } from "../../stores/renuestore";
 
-  let menuItems = $navbar_data["menu-item"];
+  let navBarItems = {};
+  let socialItems = {};
+
+  /////////////////////////////////////////////
+
+  const fetchRefs = async () => {
+    const res = await fetch($cms_url);
+    const data = await res.json();
+    return data.refs;
+  };
+
+  const fetchData = async (callback) => {
+    const refs = await fetchRefs();
+
+    const masterRef = await refs.map((ref, index) => {
+      return ref.ref;
+    });
+
+    const url =
+      $cms_url + "/documents/search?ref=" + masterRef + "#format=json";
+    const res = await fetch(url);
+    const data = await res.json();
+
+    let navBarData = {};
+
+    await data.results.map((data, index) => {
+      if (data.slugs[0] === "navbar") {
+        navBarData = data.data;
+      }
+    });
+
+    callback(navBarData);
+  };
+
+  onMount(async () => {
+    fetchData(async (navbar) => {
+      //console.log("navbar", navbar);
+      navBarItems = await navbar;
+      socialItems = navbar.social;
+    });
+    return () => navBarItems;
+  });
 </script>
 
 <div
@@ -15,13 +59,17 @@
   <nav class="flex py-16 lg:text-md md:text-md">
     <div class="flex-grow">
       <a class="" href="/">
-        <img src={$navbar_data.logo.url} alt="Renue Logo" class="md:w-168" />
+        {#if navBarItems.logo !== undefined}
+          <img src={navBarItems.logo.url} alt="Renue Logo" class="md:w-168" />
+        {/if}
       </a>
     </div>
     <div class="flex items-center xl:space-x-16 lg:space-x-32">
-      {#each menuItems as item}
-        <MenuItem label={item.label} url={item.url} id={item.label} />
-      {/each}
+      {#if navBarItems["menu-item"] !== undefined}
+        {#each navBarItems["menu-item"] as item}
+          <MenuItem label={item.label} url={item.url} id={item.label} />
+        {/each}
+      {/if}
     </div>
   </nav>
 </div>

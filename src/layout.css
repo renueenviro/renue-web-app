@@ -21,6 +21,14 @@ body {
   background: linear-gradient(180deg, #032027, #3fc4e5 200%);
 }
 
+.gradient-bg-secondary-main {
+  background: linear-gradient(180deg, #6498a5 #063b48 200%);
+}
+
+.gradient-bg-secondary-main {
+  background: linear-gradient(45deg, #6498a5, #063b48);
+}
+
 .gradient-text-blue-to-green-vertical {
   cursor: pointer;
   background: -webkit-linear-gradient(rgb(229, 243, 245), rgb(235, 255, 226));

@@ -2,7 +2,9 @@
   //LIBS
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
+  import Icon from "@iconify/svelte";
 
+  //PROPS
   export let contents;
 
   onMount(async () => {
@@ -43,11 +45,9 @@
 
 <div
   id="wrapper"
-  class="grid grid-flow-col grid-cols-5 w-full  gradient-bg-semidark-secondary"
+  class="grid grid-flow-col grid-cols-5 w-full h-screen gradient-bg-semidark-secondary"
 >
-  <div
-    class="flex col-span-2 py-240 pl-148 h-full items-center text-4xl font-bold"
-  >
+  <div class="flex my-auto col-span-2 pl-148 text-4xl font-bold">
     <div class="w-full space-y-24">
       {#each contents as item}
         <div
@@ -64,7 +64,7 @@
       {/each}
     </div>
   </div>
-  <div class="col-span-3">
+  <div class="flex relative items-center col-span-3">
     {#each contents as item}
       {#if item.visible}
         <div
@@ -74,10 +74,28 @@
         >
           <div
             id="overlay"
-            class="flex w-1120 h-1120 text-lg text-on-background-variant"
+            class="flex flex-col w-1120 text-lg space-y-24 py-400"
           >
-            <div id="text-wrapper" class="flex m-32">
-              <h1>{item.paragraph}</h1>
+            <div
+              id="title"
+              class="flex items-center text-xl text-primary-light w-full px-120 space-x-12"
+            >
+              <Icon icon="gridicons:share-computer" />
+              <h1 class="text-xl font-bold text-on-background-variant">
+                {item.label}
+              </h1>
+            </div>
+            <div
+              id="text-wrapper"
+              class="flex mx-120 text-on-background-variant"
+            >
+              <div
+                id="text-bar"
+                class="py-72 w-48 gradient-blue-to-green-light-diagonal"
+              />
+              <p class="text-secondary-light text-lg px-16">
+                {item.paragraph}
+              </p>
             </div>
           </div>
           <div id="img-container" />
@@ -102,7 +120,7 @@
 
   #img-container {
     width: 1200px;
-    height: 820px;
+    height: 720px;
     background-image: var(--imgurl);
     background-repeat: no-repeat;
     background-size: fit;
@@ -118,20 +136,28 @@
     z-index: 10;
   }
 
-  #text-wrapper {
-    position: absolute;
-    bottom: 0;
+  #text-bar {
+    /* position: absolute; */
+    background-color: -webkit-linear-gradient(
+      rgb(82, 235, 255),
+      rgb(168, 255, 128)
+    );
+    z-index: 10;
+  }
+
+  #title {
+    margin: auto;
+    z-index: 20;
   }
 
   #overlay {
     position: absolute;
     right: 0;
-    bottom: 0;
     background: linear-gradient(
       180deg,
-      #02161b55,
-      #02161b55 65%,
-      #000000c9 85%
+      #02161ba6,
+      #02161ba6 20%,
+      #000000a4 75%
     );
   }
 </style>
