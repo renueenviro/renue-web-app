@@ -10,20 +10,19 @@
 
   //PROPS
   export let contents;
-  console.log("contents.", contents.section_2_data);
+  console.log("contents.", contents);
 </script>
 
 <div
   class="flex items-center space-x-12 w-full mt-72 text-2xl font-bold text-primary-light px-168"
 >
-  <Icon icon="fluent:people-team-24-regular" />
+  <Icon icon="bx:bx-comment-detail" />
   <h1 class="text-on-background-variant">{contents.title}</h1>
 </div>
-
 <div class="relative">
   <SectionContainer>
     {#if contents !== undefined}
-      {#each contents.section_2_data as card}
+      {#each contents.section_3_data as card}
         <div class="flex justify-center w-full h-640">
           <CardBioDark
             name={card.name}

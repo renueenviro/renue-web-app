@@ -4,14 +4,17 @@
 
   //PROPS
   export let contents;
+  // console.log("contents.", contents);
 </script>
 
-<div class="bg-background-light">
-  <SectionContainer>
+<SectionContainer>
+  {#if contents !== undefined}
     <div
-      class="w-full px-240 py-360 items-center text-3xl font-bold text-center "
+      class="bg-background-light text-4xl font-bold px-168 py-360 text-center"
     >
-      <h1 class="gradient-text-dark">{contents.headline}</h1>
+      <p class="gradient-text-dark">
+        {contents.headline}
+      </p>
     </div>
-  </SectionContainer>
-</div>
+  {/if}
+</SectionContainer>

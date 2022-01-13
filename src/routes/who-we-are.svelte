@@ -35,7 +35,9 @@
     let hero_data = {};
     let section_1_data = {};
     let section_2_data = [];
-    let section_3_data = {};
+    let section_2_title = "";
+    // let section_3_data = [];
+    let section_3_title = "";
     let contact_data = {};
 
     data.results.forEach((result, i) => {
@@ -75,8 +77,8 @@
           }
 
           if (section.slice_type === "section-3") {
-            //console.log(section);
-            section_3_data.headline = section.primary.headline[0].text;
+            console.log(section);
+            section_3_title = section.primary.headline[0].text;
           }
 
           if (section.slice_type === "contact-section") {
@@ -102,7 +104,7 @@
         paragraph: section_1_data.paragraph,
       },
       section2: section_2_data,
-      section3: { headline: section_3_data.headline },
+      section3: { headline: section_3_title },
       contact: {
         headline: contact_data.headline,
         start: contact_data.start,

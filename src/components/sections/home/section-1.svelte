@@ -39,7 +39,7 @@
   };
 </script>
 
-<div class="bg-background-light w-full h-auto py-240">
+<div class="bg-background-light w-full h-auto py-120">
   <Carousel
     {slides}
     displayControls={true}

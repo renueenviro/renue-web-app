@@ -9,7 +9,7 @@
   import HeroSection from "../components/sections/leadership/hero-section.svelte";
   import Section1 from "../components/sections/leadership/section-1.svelte";
   import Section2 from "../components/sections/leadership/section-2.svelte";
-  import Section3 from "../components/sections/who-we-are/section-3.svelte";
+  import Section3 from "../components/sections/leadership/section-3.svelte";
   import ContactSection from "../components/sections/who-we-are/contact-section.svelte";
 
   //COMPONENTS
@@ -38,7 +38,9 @@
     let hero_data = {};
     let section_1_data = {};
     let section_2_data = [];
-    let section_3_data = {};
+    let section_2_title = "";
+    let section_3_data = [];
+    let section_3_title = "";
     let contact_data = {};
 
     await data.results.forEach((result, i) => {
@@ -61,6 +63,8 @@
 
           if (section.slice_type === "section-2") {
             section.items.forEach((item, i) => {
+              console.log(section);
+              console.log(item);
               let tmp = {};
               if (i == 0) {
                 tmp.visible = true;
@@ -71,16 +75,35 @@
               tmp.name = item.name[0].text;
               tmp.role = item.role[0].text;
               tmp.img_url = item.profile.url;
+              tmp.bio = item.bio[0].text;
 
               //console.log("tmp", tmp);
 
               section_2_data.push(tmp);
             });
+            section_2_title = section.primary["section-title"][0].text;
           }
 
           if (section.slice_type === "section-3") {
-            //console.log(section);
-            section_3_data.headline = section.primary.headline[0].text;
+            section.items.forEach((item, i) => {
+              //console.log(item);
+              let tmp = {};
+              if (i == 0) {
+                tmp.visible = true;
+              } else {
+                tmp.visible = false;
+              }
+              tmp.more = item.more[0].text;
+              tmp.name = item.name[0].text;
+              tmp.role = item.role[0].text;
+              tmp.img_url = item.profile.url;
+              tmp.bio = item.bio[0].text;
+
+              //console.log("tmp", tmp);
+
+              section_3_data.push(tmp);
+            });
+            section_3_title = section.primary["title-bio-card"][0].text;
           }
 
           if (section.slice_type === "contact-section") {
@@ -106,9 +129,13 @@
         paragraph: section_1_data.paragraph,
       },
       section2: {
+        title: section_2_title,
         section_2_data,
       },
-      section3: { headline: section_3_data.headline },
+      section3: {
+        title: section_3_title,
+        section_3_data,
+      },
       contact: {
         headline: contact_data.headline,
         start: contact_data.start,
@@ -165,9 +192,6 @@
   {/if}
 {/await}
 
-<!-- 
-<SpacerLine />
-
 {#await section3Data}
   <h1 class="text-secondary text-8xl mt-72">Loading...</h1>
 {:then data}
@@ -176,6 +200,8 @@
   {/if}
 {/await}
 
+<SpacerLine />
+<!-- 
 {#await contactData}
   <h1 class="text-secondary text-8xl mt-72">Loading...</h1>
 {:then data}

@@ -3,8 +3,10 @@ const primaryMain = "#A6CF4D";
 const primaryLight = "#D9F3A1";
 const primaryLightVariant = "#E3E9DA";
 const primaryDark = "#2D3B0F";
+const primaryDarkAlpha = "#2D3B0F55";
 const secondaryMain = "#00BCEA";
 const secondaryDark = "#122C32";
+const secondaryDarkAlpha = "#122C32ee";
 const tertiaryMain = "#C1C1C1";
 const backgroundLight = "#FFFFFF";
 const onBackgroundVariant = "#FFFFFF";
@@ -23,6 +25,7 @@ module.exports = {
       "primary-dark": primaryDark,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
+      "secondary-dark-alpha": secondaryDarkAlpha,
       "tertiary-main": tertiaryMain,
       "on-background-variant": onBackgroundVariant,
       "on-background-variant-alpha": onBackgroundVariantAlpha,
@@ -36,6 +39,7 @@ module.exports = {
       "primary-dark": primaryDark,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
+      "secondary-dark-alpha": secondaryDarkAlpha,
       "tertiary-main": tertiaryMain,
       "on-background-variant": onBackgroundVariant,
       "on-background-variant-alpha": onBackgroundVariantAlpha,
@@ -47,6 +51,7 @@ module.exports = {
       "primary-light": primaryLight,
       "secondary-main": secondaryMain,
       "secondary-dark": secondaryDark,
+      "secondary-dark-alpha": secondaryDarkAlpha,
       "tertiary-main": tertiaryMain,
       "background-light": backgroundLight,
       "on-background-variant": onBackgroundVariant,
@@ -58,10 +63,12 @@ module.exports = {
       1: "1%",
       2: "2%",
       4: "4px",
+      6: "6px",
       8: "8px",
       12: "12px",
       16: "16px",
       24: "24px",
+      25: "25%",
       32: "32px",
       40: "40px",
       48: "48px",
@@ -72,6 +79,7 @@ module.exports = {
       75: "75%",
       80: "80px",
       96: "96px",
+      100: "100%",
       120: "120px",
       132: "132px",
       148: "148px",
@@ -80,13 +88,15 @@ module.exports = {
       240: "240px",
       256: "256px",
       292: "292px",
+      320: "320px",
       360: "360px",
       392: "392px",
       400: "400px",
       440: "440px",
       480: "480px",
       520: "520px",
-      564: "564px",
+      560: "560px",
+      600: "600px",
       640: "640px",
       720: "720px",
       800: "800px",
@@ -97,13 +107,14 @@ module.exports = {
       sm: "8px",
       md: "16px",
       lg: "32px",
-      xl: "48px",
+      xl: "36px",
     },
     fontSize: {
       xs: "12px",
       sm: "16px",
       md: "20px",
       lg: "24px",
+      "2lg": "32px",
       xl: "36px",
       "2xl": "44px",
       "3xl": "56px",
